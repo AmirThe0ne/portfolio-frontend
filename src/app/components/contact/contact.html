@@ -1,0 +1,33 @@
+<h2>Contact</h2>
+
+@if (sent) {
+  <p style="color:green">Message sent successfully!</p>
+}
+
+<form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label>Name</label><br>
+    <input type="text" formControlName="name">
+    @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+      <p style="color:red">Name is required (min 3 characters)</p>
+    }
+  </div>
+
+  <div>
+    <label>Email</label><br>
+    <input type="email" formControlName="email">
+    @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+      <p style="color:red">Valid email is required</p>
+    }
+  </div>
+
+  <div>
+    <label>Message</label><br>
+    <textarea rows="4" formControlName="message"></textarea>
+    @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+      <p style="color:red">Message is required (min 10 characters)</p>
+    }
+  </div>
+
+  <button type="submit">Send</button>
+</form>

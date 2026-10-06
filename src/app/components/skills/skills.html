@@ -1,0 +1,7 @@
+<h2>Skills</h2>
+
+@for (s of skills$ | async; track s._id) {
+  <div>
+    <h4>{{ s.name }}</h4>
+  </div>
+}

@@ -1,0 +1,7 @@
+@if (home(); as h) {
+  <section>
+    <h1>{{ h.title }}</h1>
+    <p>{{ h.subtitle }}</p>
+    <a [routerLink]="h.buttonLink">{{ h.buttonText }}</a>
+  </section>
+}

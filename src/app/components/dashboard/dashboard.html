@@ -1,0 +1,172 @@
+<h1>Dashboard</h1>
+
+<!-- ========================= -->
+<!-- Messages -->
+<!-- ========================= -->
+
+<h2>Messages ({{ messages.length }})</h2>
+
+@if (messages.length === 0) {
+
+  <p>No messages yet.</p>
+
+} @else {
+
+  @for (m of messages; track m._id) {
+
+    <div>
+      <strong>{{ m.name }}</strong>
+      ({{ m.email }})
+
+      <p>{{ m.message }}</p>
+
+      <button (click)="removeMessage(m._id)">
+        Delete
+      </button>
+    </div>
+
+  }
+
+}
+
+<hr>
+
+
+<!-- ========================= -->
+<!-- Skills -->
+<!-- ========================= -->
+
+<h2>Skills</h2>
+
+<form
+  [formGroup]="skillForm"
+  (ngSubmit)="addSkill()"
+>
+
+  <input
+    type="text"
+    placeholder="Skill name"
+    formControlName="name"
+  >
+
+  <button type="submit">
+    Add Skill
+  </button>
+
+</form>
+
+
+@if (skills.length === 0) {
+
+  <p>No skills yet.</p>
+
+} @else {
+
+  @for (s of skills; track s._id) {
+
+    <div>
+
+      {{ s.name }}
+
+      <button
+        (click)="removeSkill(s._id)"
+      >
+        Delete
+      </button>
+
+    </div>
+
+  }
+
+}
+
+
+<hr>
+
+
+<!-- ========================= -->
+<!-- Projects -->
+<!-- ========================= -->
+
+<h2>Projects</h2>
+
+<form
+  [formGroup]="projectForm"
+  (ngSubmit)="addProject()"
+>
+
+  <input
+    type="text"
+    placeholder="Project title"
+    formControlName="title"
+  >
+
+  <input
+    type="text"
+    placeholder="Project description"
+    formControlName="description"
+  >
+
+  <input
+    type="text"
+    placeholder="Image URL"
+    formControlName="image"
+  >
+
+  <input
+    type="text"
+    placeholder="Project link"
+    formControlName="link"
+  >
+
+  <button type="submit">
+    Add Project
+  </button>
+
+</form>
+
+
+@if (projects.length === 0) {
+
+  <p>No projects yet.</p>
+
+} @else {
+
+  @for (p of projects; track p._id) {
+
+    <div>
+
+      <h3>{{ p.title }}</h3>
+
+      <p>{{ p.description }}</p>
+
+      @if (p.image) {
+        <img
+          [src]="p.image"
+          [alt]="p.title"
+          width="200"
+        >
+      }
+
+      @if (p.link) {
+        <p>
+          <a
+            [href]="p.link"
+            target="_blank"
+          >
+            View Project
+          </a>
+        </p>
+      }
+
+      <button
+        (click)="removeProject(p._id)"
+      >
+        Delete
+      </button>
+
+    </div>
+
+  }
+
+}
